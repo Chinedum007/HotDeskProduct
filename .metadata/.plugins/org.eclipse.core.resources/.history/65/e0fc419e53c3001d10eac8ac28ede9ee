@@ -1,0 +1,14 @@
+package scripts;
+
+import org.testng.annotations.Test;
+
+import pages.AddContact;
+
+public class TC005 extends BaseTest{
+	
+	@Test(description="As an admin I want to be able to add a contact")
+     public void addContact() {
+		AddContact AC = new AddContact(driver, webActionUtil);
+		AC.addContact();
+	}		
+}

@@ -1,0 +1,225 @@
+package pages;
+
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.FindBy;
+import org.testng.Reporter;
+
+import generic.WebActionUtil;
+
+public class AddBooking extends BasePage{
+
+	public AddBooking(WebDriver driver, WebActionUtil webActionUtil, ChromeOptions opt) {
+		super(driver, webActionUtil);
+	}
+	
+	@FindBy(xpath="//a[text()='Calendar']")
+	private WebElement ClickOnCalendar;
+	
+	@FindBy(id="newBookingButton")
+	private WebElement clickOnNewBookingBtnFromCalenadarPage;
+	
+	@FindBy(name="selectedStartTime")
+	private WebElement SelectStartTime;
+	
+	@FindBy(name="selectedFinishTime")
+	private WebElement SelectFinishTime;
+	
+	
+	@FindBy(id="titleEditor")
+	private WebElement EnterBookingTitle;
+	
+	@FindBy(id="DelegatesEditor")
+	private WebElement EnterDelegatesNumber;
+	
+	@FindBy(xpath="//button[@id='ContactsButton']")
+	private WebElement clickOnContactBtn;
+	@FindBy(id="searchFirstName")
+	private WebElement EnterFirstnameOfContact;
+	 
+	@FindBy(id="searchSurname")
+	private WebElement EnterSurnameofContact;
+	@FindBy(id="searchContactsBtn")
+	private WebElement ClickOnSearchContactBtn;
+	
+	@FindBy(xpath="//td[text()='Miss Nora Norris']")
+	private WebElement DoubleClickToSelectContact;
+	
+	@FindBy(xpath="//span[text()='Invoice']")
+	private WebElement ClickToOpenInvoice;
+	
+	@FindBy(id="InvoiceContactAddress")
+	private WebElement clickToAddInvoiceContactAddress;
+	
+	@FindBy(id="saveInvoice")
+	private WebElement clickToSaveInvoice;
+	
+	@FindBy(xpath="//span[text()='Costs']")
+	private WebElement ClickToOpenCosts;
+	
+	@FindBy(id="BookingRoomCost")
+	private WebElement ClearAndEnterRoomCost;
+	
+	@FindBy(id="BookingEquipmentCost")
+	private WebElement ClearAndEnterBookingEquipmentCost;
+	
+	@FindBy(id="saveCosts")
+	private WebElement clickToSaveCosts;
+	
+	@FindBy(id="CateringButton")
+	private WebElement ClickToOpenCatering;
+	
+	@FindBy(id="newCateringItem")
+	private WebElement clickToAddNewCateringItem;
+	
+	@FindBy(id="cateringDesc")
+	private WebElement clickToSelectCateringItems;
+	
+	@FindBy(xpath="//option[text()='Bottled water']")
+	private WebElement SelectDescriptionFromCatering;
+	
+	@FindBy(id="CateringQuantity")
+	private WebElement EnterCateringQuantity;
+	
+	@FindBy(id="CalculateCateringCost")
+	private WebElement ClickCalculateBtn;
+	
+	@FindBy(id="saveCateringItem")
+	private WebElement clickToSaveCateringItem;
+	
+	@FindBy(id="closeCatering")
+	private WebElement clickToCloseCatering;
+	
+	@FindBy(xpath="//span[text()='Sponsors']")
+	private WebElement ClickToOpenSponsors;
+	
+	@FindBy(id="newSponsor")
+	private WebElement clickToAddNewSponsor;
+	
+	@FindBy(id="ContactsTableButton")
+	private WebElement clickSponsorAvatarBtn;
+	
+	@FindBy(id="searchFirstName")
+	private WebElement EnterFirstnameOfContactForSponsor;
+	 
+	@FindBy(id="searchSurname")
+	private WebElement EnterSurnameofContactForSponsor;
+	@FindBy(id="searchContactsBtn")
+	private WebElement ClickOnSearchContactBtnForSponsor;
+	
+	@FindBy(xpath="//td[text()='Mr Colin Catfish']")
+	private WebElement DoubleClickToSelectContactForSponsor;
+	
+	@FindBy(id="sponsorRoomCost")
+	private WebElement ClearAndEnterSponsorRoomCost;
+	
+	@FindBy(id="ContactAddress")
+	private WebElement ClickOnSponsorContactAddBtn;
+	
+	@FindBy(id="sponsorInvoiceAdd1")
+	private WebElement EnterInvoiceAdress1ForSponsor;
+	@FindBy(id="saveSponsor")
+	private WebElement ClickToSaveSponsor;
+	
+	@FindBy(id="closeSponsors")
+	private WebElement clickToCloseSponsors;
+	
+	@FindBy(id="nonMedicalRadio")
+	private WebElement clickNonMedicalRadioBtn;
+	
+	@FindBy(id="DropDownListForDepartment")
+	private WebElement SelectDepartmentFromDropDownList;
+	
+	@FindBy(id="DropDownListForCategory")
+	private WebElement SelectCategoryFromDropDownList;
+	
+	@FindBy(id="noEquipmentRequired")
+	private WebElement NoEquipmentRequired;
+	
+	@FindBy(id="SaveBookingButton")
+	private WebElement ClickOnSaveBookingBtn;
+	
+	public void addBooking() throws InterruptedException {
+	
+	webActionUtil.clickOnElement(ClickOnCalendar);
+	webActionUtil.clickOnElement(clickOnNewBookingBtnFromCalenadarPage);	
+	Reporter.log("Login, navigate to calendar and select new booking");
+	
+	webActionUtil.selectByValueInListBox(SelectStartTime, "19:00:00");
+	webActionUtil.selectByValueInListBox(SelectFinishTime, "19:15:00");
+	Reporter.log("Enter booking Start time (19:00) and Finish time (19:15)");
+	
+	webActionUtil.enterData(EnterBookingTitle, "Automation Test");
+	webActionUtil.enterData(EnterDelegatesNumber, "1");
+	Reporter.log("Enter booking title(Automation Test) and number of delegate(1) ");
+	Thread.sleep(6000);
+	JavascriptExecutor jse=(JavascriptExecutor) driver;
+	jse.executeScript("window.scrollBy(0, 300);");
+	webActionUtil.clickOnElement(clickOnContactBtn);
+	Reporter.log("Click on Contact Avatar to open");
+	Thread.sleep(3000);
+	webActionUtil.enterData(EnterFirstnameOfContact, "Nora");
+	webActionUtil.enterData(EnterSurnameofContact, "Norris");
+	webActionUtil.clickOnElement(ClickOnSearchContactBtn);
+	Thread.sleep(2000);
+	Reporter.log("Enter first name and last name in the search text box then click search btn");
+	webActionUtil.doubleClick(DoubleClickToSelectContact);
+	Reporter.log("Double click to select contact");
+	Thread.sleep(3000);
+	webActionUtil.clickOnElement(ClickToOpenInvoice);
+	webActionUtil.clickOnElement(clickToAddInvoiceContactAddress);
+	webActionUtil.clickOnElement(clickToSaveInvoice);
+	Reporter.log("Open invoice, add invoice address and save");
+	Thread.sleep(3000);
+	webActionUtil.clickOnElement(ClickToOpenCosts);
+	webActionUtil.enterData(ClearAndEnterRoomCost, "10.00");
+	webActionUtil.enterData(ClearAndEnterBookingEquipmentCost, "5.00");
+	webActionUtil.clickOnElement(clickToSaveCosts);
+	Reporter.log("Open costs, enter Room cost (£10:00),Equipment cost (£5:00) and save");
+	Thread.sleep(2000);
+	webActionUtil.clickOnElement(ClickToOpenCatering);
+    webActionUtil.clickOnElement(clickToAddNewCateringItem);
+    Thread.sleep(2000);
+	webActionUtil.selectByValueInListBox(clickToSelectCateringItems, "40");
+	webActionUtil.enterData(EnterCateringQuantity, "1");
+    webActionUtil.clickOnElement(ClickCalculateBtn);
+    Thread.sleep(2000);
+    webActionUtil.clickOnElement(clickToSaveCateringItem);
+    webActionUtil.clickOnElement(clickToCloseCatering);
+    Reporter.log("Open catering, add catering item and save ");
+    Thread.sleep(2000);
+    webActionUtil.clickOnElement(ClickToOpenSponsors);
+    webActionUtil.clickOnElement(clickToAddNewSponsor);
+    webActionUtil.clickOnElement(clickSponsorAvatarBtn);
+    webActionUtil.enterData(EnterFirstnameOfContactForSponsor, "Colin" );
+    webActionUtil.enterData(EnterSurnameofContactForSponsor, "Catfish");
+    webActionUtil.clickOnElement(ClickOnSearchContactBtnForSponsor);
+    webActionUtil.doubleClick(DoubleClickToSelectContactForSponsor);
+	webActionUtil.enterData(ClearAndEnterSponsorRoomCost, "25.00");
+	webActionUtil.clickOnElement(ClickOnSponsorContactAddBtn);
+	webActionUtil.enterData(EnterInvoiceAdress1ForSponsor, "Automation Test address");
+	webActionUtil.clickOnElement(ClickToSaveSponsor);
+	Thread.sleep(2000);
+	webActionUtil.clickOnElement(clickToCloseSponsors);
+	Reporter.log("Open Sponsors, add details, costs, save and then close ");
+	Thread.sleep(3000);
+	webActionUtil.clickOnElement(clickNonMedicalRadioBtn);
+	webActionUtil.selectByTextInListBox(SelectDepartmentFromDropDownList, "Education Centre");
+	webActionUtil.selectByTextInListBox(SelectCategoryFromDropDownList, "Interview");
+	jse.executeScript("window.scrollBy(0, 300);");
+	Thread.sleep(5000);
+	webActionUtil.clickOnElement(NoEquipmentRequired);
+	jse.executeScript("window.scrollBy(0, -300);");
+	Thread.sleep(2000);
+	webActionUtil.clickOnElement(ClickOnSaveBookingBtn);
+	Reporter.log("Select education centre under department and interview under category ");
+	Reporter.log("Tick No Equipment Required ");
+	Reporter.log("Save and then logout ");
+	
+	
+	}
+	
+	
+}
